@@ -1,7 +1,7 @@
 // install any missing modules
 const program = require('commander')
 const { prompt } = require('inquirer')
-const {newContactPrompts} = require('./prompts')
+const { newContactPrompts } = require('./prompts')
 const {getContacts, saveContacts} = require('./utils')
 
 program
@@ -17,6 +17,7 @@ program
       .then(({firstName, lastName, phoneNumber}) => {
         const key = firstName + ' ' + lastName
         const contacts = getContacts()
+        console.log('updated contacts', contacts)
         contacts[key] = {firstName, lastName, phoneNumber}
         saveContacts(contacts)
       })

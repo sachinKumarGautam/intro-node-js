@@ -21,6 +21,7 @@ const logRequest = (method, route, status) => console.log(method, route, status)
 const server = http.createServer((req, res) => {
   const method = req.method
   const route = url.parse(req.url).pathname
+  console.log('this is route', route)
   // this is sloppy, espcially with more assets, create a "router"
   if (route === '/') {
     res.writeHead(200, {'Content-Type': 'text/html'})
@@ -29,8 +30,10 @@ const server = http.createServer((req, res) => {
     res.end()
   } else {
     // missing asset should not cause server crash
-    throw new Error('route not found')
-    res.end()
+    res.writeHead(404, { 'Content-Type': 'text/plain' })
+    res.write("404 Not Found\n");
+    res.end();
+    // throw new Error('route not found')
   }
   // most important part, send down the asset
 })

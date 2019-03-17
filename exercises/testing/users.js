@@ -9,7 +9,7 @@ const users = new Array(20).fill(0)
 
 // simulate async db call with promise
 const findUser = (id) => new Promise((resolve, reject) => {
-  const user = users.find(user => user.id === id)
+  const user = users.find(user => user.id === parseInt(id))
   if (user) {
     return resolve(user)
   }
@@ -19,7 +19,7 @@ const findUser = (id) => new Promise((resolve, reject) => {
 // simulate async db call with promise
 const deleteUser = (id) => new Promise((resolve, reject) => {
   const id = fixId(id)
-  const i = users.findIndex(user => user.id === id)
+  const i = users.findIndex(user => user.id == id)
 
   if (i < 0) {
     return reject(new Error(`No user with id "${id}"`))
